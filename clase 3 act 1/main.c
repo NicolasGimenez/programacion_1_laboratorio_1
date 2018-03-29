@@ -50,8 +50,7 @@ int main()
         case 4:
                 if(divisionEnteros(numeroUno,numeroDos,&division)==0)
                 {
-                    divisionEnteros(numeroUno,numeroDos,&division);
-                    printf("la division de los numeros es : %f ",division);
+                    printf("la division de los numeros es : %.2f ",division);
                     break;
                 }else
                 {
@@ -91,7 +90,7 @@ int main()
 
         if(numeroDos!=0)
         {
-            *division= numeroUno / numeroDos;
+            *division= (float)numeroUno / numeroDos;
             retorno = 0;
         }
         return retorno;
