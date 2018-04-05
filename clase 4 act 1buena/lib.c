@@ -40,13 +40,13 @@ int getFloat(float* resultado,
 
 {
     int retorno = -1;
-    long auxiliarLong;
+    float auxiliarLong;
 
     do
     {
         reintentos--;
         printf("%s",mensaje);
-        scanf("%ld",&auxiliarLong);
+        scanf("%f",&auxiliarLong);
         if(auxiliarLong >= minimo && auxiliarLong <= maximo)
         {
             *resultado = (float)auxiliarLong;
@@ -58,3 +58,34 @@ int getFloat(float* resultado,
     }while(reintentos >= 0);
     return retorno;
 }
+
+///caso char//
+int getChar(char* resultado,
+            char* mensaje,
+            char* mensajeError,
+            char minimo,
+            char maximo,
+            int reintentos)
+
+{
+    int retorno = -1;
+    char auxiliarLong;
+
+    do
+    {
+        reintentos--;
+        printf("%s",mensaje);
+        scanf("%c",&auxiliarLong);
+        if(auxiliarLong >= minimo && auxiliarLong <= maximo)
+        {
+            *resultado = auxiliarLong;
+            retorno = 0;
+            break;
+        }
+        printf("%s\n",mensajeError);
+
+    }while(reintentos >= 0);
+    return retorno;
+}
+
+///caso que sea string///
