@@ -1,26 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <limits.h>
 #include "funciones.h"
-int sumaOperandos (int primerOperando, int segundoOperando,float * suma);
-int restaOperandos (int primerOperando, int segundoOperando,int * resta);
-float divisionOperandos (int primerOperando, int segundoOperando,float * division);
-int multiplicacionOperandos (int primerOperando, int segundoOperando, int *multiplicacion);
-int factorialOperaando (int primerOperando,int *factorial);
+float sumaOperandos (float primerOperando, float segundoOperando,float * suma);
+float restaOperandos (float primerOperando, float segundoOperando,float * resta);
+float divisionOperandos (float primerOperando, float segundoOperando,float * division);
+float multiplicacionOperandos (float primerOperando, float segundoOperando, float *multiplicacion);
+int factorialOperando (int primerOperando,int *factorial);
 
 int main()
 {
     char seguir='s';
     int opcion=0;
-    int primerOperando;
-    int segundoOperando;
+    float primerOperando;
+    float segundoOperando;
     int contador=0;
     int banderaUno;
     int banderaDos;
     float suma;
-    int resta;
+    float resta;
     float division;
-    int multiplicacion;
-    int factorial;
+    float multiplicacion;
+    long factorial;
 
     while(seguir=='s')
     {   if(contador==0)
@@ -30,8 +31,8 @@ int main()
             contador= contador + 1;
         }
 
-        printf("1- Ingresar 1er operando (A=%d )\n",primerOperando);
-        printf("2- Ingresar 2do operando (B=%d )\n",segundoOperando);
+        printf("1- Ingresar 1er operando (A=%.2f )\n",primerOperando);
+        printf("2- Ingresar 2do operando (B=%.2f )\n",segundoOperando);
         printf("3- Calcular la suma (A+B)\n");
         printf("4- Calcular la resta (A-B)\n");
         printf("5- Calcular la division (A/B)\n");
@@ -45,16 +46,18 @@ int main()
         switch(opcion)
         {
             case 1:
-                    printf("ingrese el primer operando ");
-                    scanf("%d",&primerOperando);
+                    printf("ingrese el primer operando \n ");
+                    scanf("%f",&primerOperando);
+                    printf("\n");
                     banderaUno=1;
                 /**Ingresa el numero*/
                 /**BanderaNUmeroUno = 1*/
 
                 break;
             case 2:
-                    printf("ingrese el segundo operando ");
-                    scanf("%d",&segundoOperando);
+                    printf("ingrese el segundo operando \n ");
+                    scanf("%f",&segundoOperando);
+                    printf("\n");
                     banderaDos=1;
                 /**Ingresa el numero 2*/
                 /**BanderaNUmeroDos = 1*/
@@ -64,10 +67,10 @@ int main()
                     {
                         if(sumaOperandos (primerOperando,segundoOperando,&suma)==0)
                         {
-                            printf("El resultado de la suma es : %2.f \n\n",suma);
+                            printf("El resultado de la suma es : %.2f \n\n",suma);
                         }else
                         {
-                            printf("\n Error la suma supera el limite (32767)\n\n");
+                            printf("\n Error la suma supera el limite \n\n");
 
                         }
                     }else
@@ -81,10 +84,10 @@ int main()
                     {
                         if(restaOperandos (primerOperando,segundoOperando,&resta)==0)
                         {
-                            printf("El resultado de la resta es : %d \n\n",resta);
+                            printf("El resultado de la resta es : %.2f \n\n",resta);
                         }else
                         {
-                            printf("Error la resta supera el limite (-32767)\n\n");
+                            printf("Error la resta supera el limite \n\n");
                         }
                     }else
                     {
@@ -113,10 +116,10 @@ int main()
                     {
                         if(multiplicacionOperandos (primerOperando,segundoOperando,&multiplicacion)==0)
                         {
-                            printf("El resultado de la multiplicacion es : %d \n\n",multiplicacion);
+                            printf("El resultado de la multiplicacion es : %.2f \n\n",multiplicacion);
                         }else
                         {
-                            printf("Error la multiplicacion supera el limite (32767)\n\n");
+                            printf("Error la multiplicacion supera el limite \n\n");
                         }
                     }else
                     {
@@ -125,22 +128,28 @@ int main()
 
                     break;
             case 7:
-                    if(factorialOperaando (primerOperando,&factorial)==0)
-                        {
-                            printf("El factorial de %d es %d \n\n",primerOperando,factorial);
-                        }
+                    if(factorialOperando (primerOperando,&factorial)==0)
+                    {
+                        printf("El factorial de %.2f es %ld \n\n",primerOperando,factorial);
+                    }
                     break;
             case 8:
                     if(banderaUno == 1 && banderaDos == 1)
                     {
                        if(sumaOperandos (primerOperando,segundoOperando,&suma)==0 && restaOperandos (primerOperando,segundoOperando,&resta)==0 && divisionOperandos (primerOperando,segundoOperando,&division)==0 && multiplicacionOperandos (primerOperando,segundoOperando,&multiplicacion)==0 )
                        {
-                           printf("El resultado de la suma es : %2.f \n\n",suma);
-                           printf("El resultado de la resta es : %d \n\n",resta);
+                           printf("El resultado de la suma es : %.2f \n\n",suma);
+                           printf("El resultado de la resta es : %.2f \n\n",resta);
                            printf("El resultado de la division es : %.2f \n\n",division);
-                           printf("El resultado de la multiplicacion es : %d \n\n",multiplicacion);
+                           printf("El resultado de la multiplicacion es : %.2f \n\n",multiplicacion);
+                        }
 
-                       }
+                        printf("El factorial de %.2f es %ld \n\n",primerOperando,factorial);
+
+                    }else
+                    {
+                        printf("Error uno de los operandos no esta cargado \n\n");
+
                     }
 
                     break;
@@ -155,67 +164,67 @@ int main()
 }
 
 
-int sumaOperandos (int primerOperando, int segundoOperando,float * suma)
+float sumaOperandos (float primerOperando, float segundoOperando,float *suma)
 {
-    long sumaAuxiliar;
+    double sumaAuxiliar;
     int retorno = -1;
-    sumaAuxiliar= (float)primerOperando + segundoOperando;
-    if(sumaAuxiliar < 32767)
+    sumaAuxiliar= primerOperando + segundoOperando;
+    if(sumaAuxiliar < INT_MAX)
     {
         *suma = sumaAuxiliar;
         retorno=0;
     }
     return retorno;
 }
-int restaOperandos (int primerOperando, int segundoOperando,int * resta)
+float restaOperandos (float primerOperando, float segundoOperando,float * resta)
 {
-    long restaAuxiliar;
+    double restaAuxiliar;
     int retorno = -1;
     restaAuxiliar= primerOperando - segundoOperando;
-    if(restaAuxiliar > -32767)
+    if(restaAuxiliar > INT_MIN && restaAuxiliar < INT_MAX)
     {
         *resta = restaAuxiliar;
         retorno = 0;
     }
     return retorno;
 }
-float divisionOperandos (int primerOperando, int segundoOperando,float * division)
+float divisionOperandos (float primerOperando, float segundoOperando,float * division)
 {
     int retorno = -1;
 
     if(segundoOperando != 0)
     {
-        *division =(float)primerOperando / segundoOperando;
+        *division = primerOperando / segundoOperando;
 
         retorno = 0;
     }
     return retorno;
 }
-int multiplicacionOperandos (int primerOperando, int segundoOperando, int *multiplicacion)
+float multiplicacionOperandos (float primerOperando, float segundoOperando, float *multiplicacion)
 {
-    long multiplicacionAuxiliar;
+    double multiplicacionAuxiliar;
     int retorno = -1;
 
     multiplicacionAuxiliar = primerOperando * segundoOperando;
 
-    if(multiplicacionAuxiliar < 32767)
+    if(multiplicacionAuxiliar < INT_MAX)
     {
         *multiplicacion = multiplicacionAuxiliar;
         retorno = 0;
     }
     return retorno;
 }
-int factorialOperaando (int primerOperando,int *factorial)
+int factorialOperando (int primerOperando,int *factorial)
 {
-    long factorialAuxiliar;
+    long factorialAuxiliar = 1;
     int retorno = -1;
-    if(primerOperando ==1)
+    int i;
+
+    for(i=1; i <= primerOperando; i++)
     {
-        return 1;
-        factorialAuxiliar= primerOperando * factorialOperaando (primerOperando - 1,*factorial);
+        factorialAuxiliar= factorialAuxiliar * i;
         *factorial= factorialAuxiliar;
         retorno = 0;
     }
     return retorno;
 }
-

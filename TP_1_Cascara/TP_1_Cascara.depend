@@ -8,9 +8,10 @@
 
 1457052376 c:\users\alumno\downloads\tp_1_cascara\funciones.h
 
-1522869749 source:c:\users\nico\downloads\programacion_1_laboratorio_1-master\programacion_1_laboratorio_1-master\tp_1_cascara\main.c
+1523475395 source:c:\users\nico\downloads\programacion_1_laboratorio_1-master\programacion_1_laboratorio_1-master\tp_1_cascara\main.c
 	<stdio.h>
 	<stdlib.h>
+	<limits.h>
 	"funciones.h"
 
 1522271682 c:\users\nico\downloads\programacion_1_laboratorio_1-master\programacion_1_laboratorio_1-master\tp_1_cascara\funciones.h
