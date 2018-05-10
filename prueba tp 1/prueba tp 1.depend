@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1523468777 source:c:\users\nico\desktop\prueba tp 1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<limits.h>
+
